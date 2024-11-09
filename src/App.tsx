@@ -40,10 +40,11 @@ function App() {
   }
 
   function filterProducts (e:any) {
+    removeFilters()
     const selected = e.target.value
     let filter:any = []
     if ( !categories.includes(selected) ){
-      setData(initialData)
+      removeFilters()
     } else {
       for ( let i = 0; i < data.length; i++ ){
         if ( data[i].category === selected ) {
@@ -52,6 +53,10 @@ function App() {
       }
       setData(filter)
     }
+  }
+
+  function removeFilters() {
+    setData([...data])
   }
 
   return (

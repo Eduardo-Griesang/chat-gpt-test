@@ -13,7 +13,7 @@ export default function Form ({now, set}: any) {
             inStock: e.target[3].value
         }
 
-        set(...now, buildNewProduct)
+        set([...now, buildNewProduct])
     }
 
     return (
