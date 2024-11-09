@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import Product from './components/Product';
 import Form from './components/Form';
+import { Data } from './Types/Data';
 
 function App() {
 
@@ -59,6 +60,22 @@ function App() {
     setData([...data])
   }
 
+  function stockProducts (e:any) {
+    const checked = e.target.checked
+    let filter:any = []
+
+    if ( checked === true ) {
+      data.forEach((e) => {
+        if ( e.inStock === true ) {
+          filter = [...filter, e]
+        }
+      })
+      setData(filter)
+    } else {
+      setData(initialData)
+    }
+  }
+
   return (
     <div className="App">
       <select onChange={(e) => sortPoducts(e)}>
@@ -67,7 +84,6 @@ function App() {
         <option>Z-A</option>
         <option>Price lowest to highest</option>
         <option>Price highest to lowest</option>
-        <option>Only products in stock</option>
       </select>
 
       <select onChange={(e) => filterProducts(e)}>
@@ -78,6 +94,10 @@ function App() {
           )
         })}
       </select>
+      <div>
+        <label>Only show products in stock</label>
+        <input onChange={(e) => stockProducts(e)} type='checkbox'  />
+      </div>
       <div className='productWrapper'>
         {data.map((prod, index) => {
           return (
