@@ -76,6 +76,8 @@ function App() {
     }
   }
 
+  //
+
   return (
     <div className="App">
       <select onChange={(e) => sortPoducts(e)}>
